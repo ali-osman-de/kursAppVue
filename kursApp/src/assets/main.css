@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.userAction {
+    list-style: none;
+}
+
+header {
+    background-color: sandybrown;
+    position: fixed;
+    color: white;
+    width: 100%;
+
+}
+
+.headerContainer {
+    display: flex;
+    padding: 15px 30px;
+    justify-content: space-between;
+}
+
+.header-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.signinContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signinContainer h3 {
+    color: lightslategray;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.signinContainer div {
+    padding: 0px;
+    width: 400px;
+}
+
+.signinContainer Form {
+    padding: 25px;
+    border-radius: 25px;
+    background-color: wheat;
+}
+
+.signinContainer .btn{
+    width: 100%;
+    margin: 5px;
+}
+
+.signinContainer .btn-warning:hover{
+    background-color: chocolate;
+}
+
+.signinContainer .btn-block:hover{
+    background-color: darkgray;
+}
