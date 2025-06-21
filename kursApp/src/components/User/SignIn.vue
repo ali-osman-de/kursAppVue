@@ -1,10 +1,10 @@
 <template>
-    <div class="signinContainer" @click="isLoggedScreen = !isLoggedScreen">
-        <Form>
+    <div class="signinContainer" >
+        <Form :validation-schema="formSchema">
             <h3> {{ isLoggedScreen ? 'Eğitmen Girişi' : 'Kaydol' }}</h3>
             <div class="form-group">
                 <Field name="email" v-slot="{ field, errors, errorMessage }">
-                    <input type="email" class="form-control" placeholder="E-mail Girin" v-bind="{ field }" />
+                    <input type="email" class="form-control" placeholder="E-mail Girin" v-bind="{ field }" :class="{'is-invalid': errors.length !== 0}"/>
                     <div class="alert" v-if="errors !== null">
                         {{ errorMessage }}
                     </div>
@@ -12,17 +12,17 @@
             </div>
             <div class="form-group">
                 <Field name="password" v-slot="{ field, errors, errorMessage }">
-                    <input type="password" class="form-control" placeholder="Şifre Girin" v-bind="{ field }" />
+                    <input type="password" class="form-control" placeholder="Şifre Girin" v-bind="{ field }" :class="{'is-invalid': errors.length !== 0}"/>
                     <div class="alert" v-if="errors !== null">
                         {{ errorMessage }}
                     </div>
                 </Field>
             </div>
-            <div>
+            <div >
                 <button class="btn btn-warning">{{ isLoggedScreen ? 'Giriş Yap' : 'Kaydol' }}</button>
-                <div>
+                <div @click="isLoggedScreen = !isLoggedScreen">
                     <button class="btn btn-block" v-if="isLoggedScreen">Kaydol</button>
-                    <button class="btn btn-block" v-else="isLoggedScreen">Giriş Yap</button>
+                    <button class="btn btn-block" v-else>Giriş Yap</button>
                 </div>
             </div>
         </Form>
@@ -33,7 +33,13 @@
 <script setup>
 import { Field, Form } from 'vee-validate';
 import * as yup from "yup";
-import {ref} from "vue";
+import { ref } from "vue";
+
+let formSchema = yup.object({
+    email: yup.string().required("email girmek zorunlu!").email('kontrol edin!'),
+    password: yup.string().required("şifre girmek zorunlu!")
+});
+
 
 const isLoggedScreen = ref(true);
 

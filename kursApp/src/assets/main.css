@@ -69,3 +69,9 @@ header {
 .signinContainer .btn-block:hover{
     background-color: darkgray;
 }
+
+.alert {
+    color: red;
+    font-size: 15px;
+    font-weight: 400;
+}
