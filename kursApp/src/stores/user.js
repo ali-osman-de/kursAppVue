@@ -31,12 +31,17 @@ export const useUserStore = defineStore('user', {
             this.user = { ...this.user, ...user };
             this.auth = true;
         },
+        async signOut() {
+            await signOut(AUTH);
+            this.user.DEFAULT_USER;
+            this.auth = false;
+            router.push('/');
+        },
         async autoSignIn(uid) {
             try {
                 const userData = await this.getUserProfile(uid)
                 this.setUser(userData)
                 router.push('/user/dashboard');
-                $toast.success('Hoşgeldiniz!')
                 return true
             } catch (error) {
                 $toast.error('Hata Oluştu!');
