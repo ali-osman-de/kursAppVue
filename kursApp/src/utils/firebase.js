@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBmwABTcHbNoddcn2en_bIeYimg51Sl51k",
-    authDomain: "kursapp-60746.firebaseapp.com",
-    projectId: "kursapp-60746",
-    storageBucket: "kursapp-60746.firebasestorage.app",
-    messagingSenderId: "663738863600",
-    appId: "1:663738863600:web:a5054777ca6614a55a5735"
+    apiKey: import.meta.env.API_KEY,
+    authDomain: import.meta.env.AUTH_DOMAIN,
+    projectId: import.meta.env.PROJECT_ID,
+    storageBucket: import.meta.env.STORE_BUCKET,
+    messagingSenderId: import.meta.env.MESSAGEING_ID,
+    appId: import.meta.env.APP_ID
 };
 
 initializeApp(firebaseConfig);
