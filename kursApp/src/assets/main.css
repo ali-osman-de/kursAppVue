@@ -18,6 +18,7 @@ header {
     position: fixed;
     color: white;
     width: 100%;
+    z-index: 32;
 
 }
 
@@ -81,4 +82,32 @@ header {
     color: red;
     font-size: 15px;
     font-weight: 400;
+}
+
+.userLoggedAction{
+    display: flex;
+    gap:20px;
+    color: black;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar {
+    position: fixed;
+    top: 70px;
+    left: 0px;
+    bottom: 0px;
+    padding: 20px;
+}
+
+.nav-link{
+    display: flex;
+    color: black;
+    font-weight: 400;
+    gap: 10px;
+}
+
+.nav-link.router-link-exact-active {
+    color: lightcoral;
 }
