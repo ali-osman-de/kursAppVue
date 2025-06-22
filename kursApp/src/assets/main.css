@@ -39,6 +39,13 @@ header {
     align-items: center;
 }
 
+.signinContainer .progressBar {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .signinContainer h3 {
     color: lightslategray;
     display: flex;
@@ -51,7 +58,7 @@ header {
     width: 400px;
 }
 
-.signinContainer Form {
+.signinContainer Form  {
     padding: 25px;
     border-radius: 25px;
     background-color: wheat;

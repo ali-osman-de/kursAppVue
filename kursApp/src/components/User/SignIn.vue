@@ -1,6 +1,11 @@
 <template>
     <div class="signinContainer">
-        <Form :validation-schema="formSchema" @submit="onSubmit">
+
+        <div class="progressBar" v-if="userStore.loading">
+            <v-progress-circular indeterminate color="danger" :size="50" />
+        </div>
+
+        <Form :validation-schema="formSchema" @submit="onSubmit" v-if="!userStore.loading">
             <h3> {{ isLoggedScreen ? 'Eğitmen Girişi' : 'Kaydol' }}</h3>
             <div class="form-group">
                 <Field name="email" v-slot="{ field, errors, errorMessage }">
@@ -54,7 +59,8 @@ let formSchema = yup.object({
 const isLoggedScreen = ref(true);
 
 function onSubmit(values, resetForm) {
-    userStore.register(values);
+    isLoggedScreen.value === true ? userStore.signIn(values) : userStore.register(values);
+
 }
 
 </script>
