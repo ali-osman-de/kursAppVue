@@ -1,7 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router';
+import router from '@/router/index';
 import './assets/main.css'
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
 
 //ToastNotificaiton
 import ToastPlugin from 'vue-toast-notification';
@@ -24,4 +27,5 @@ createApp(App)
     .use(vuetify)
     .use(ToastPlugin)
     .use(router)
+    .use(pinia)
     .mount('#app')
