@@ -4,6 +4,10 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { AUTH, DB } from "@/utils/firebase.js";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
 import router from "@/router"
+import { useToast } from 'vue-toast-notification'
+
+
+const $toast = useToast();
 
 const DEFAULT_USER = {
     uid: null,
@@ -27,6 +31,18 @@ export const useUserStore = defineStore('user', {
             this.user = { ...this.user, ...user };
             this.auth = true;
         },
+        async autoSignIn(uid) {
+            try {
+                const userData = await this.getUserProfile(uid)
+                this.setUser(userData)
+                router.push('/user/dashboard');
+                $toast.success('Hoşgeldiniz!')
+                return true
+            } catch (error) {
+                $toast.error('Hata Oluştu!');
+                console.log(error)
+            }
+        },
         async getUserProfile(uid) {
             try {
                 const userRef = await getDoc(doc(DB, 'users', uid))
@@ -45,9 +61,10 @@ export const useUserStore = defineStore('user', {
 
                 this.setUser(userData);
                 router.push('/user/dashboard');
+                $toast.success('Hoşgeldiniz!')
             } catch (error) {
                 this.loading = false;
-                return error
+                $toast.error('Hata Oluştu!');
             }
             finally {
                 this.loading = false;
@@ -70,10 +87,10 @@ export const useUserStore = defineStore('user', {
 
                 this.setUser(newUser);
                 router.push('/user/dashboard');
-
+                $toast.success('Hoşgeldiniz!');
             } catch (error) {
                 this.loading = false;
-                return error
+                $toast.error('Hata Oluştu!');
             }
             finally {
                 this.loading = false;
