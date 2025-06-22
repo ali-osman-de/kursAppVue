@@ -10,6 +10,10 @@ const pinia = createPinia()
 import ToastPlugin from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-bootstrap.css';
 
+//Firebase
+import { onAuthStateChanged } from 'firebase/auth';
+import { AUTH } from './utils/firebase';
+
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -23,9 +27,20 @@ const vuetify = createVuetify({
     directives,
 })
 
-createApp(App)
-    .use(vuetify)
-    .use(ToastPlugin)
-    .use(router)
-    .use(pinia)
-    .mount('#app')
+let app;
+
+onAuthStateChanged(
+    AUTH,
+    () => {
+        if (!app) {
+            app = createApp(App)
+                .use(vuetify)
+                .use(ToastPlugin)
+                .use(router)
+                .use(pinia)
+                .mount('#app')
+        }
+
+    }
+)
+

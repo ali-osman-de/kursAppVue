@@ -32,14 +32,14 @@ header {
     font-weight: 500;
 }
 
-.signinContainer {
+.progressBar{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.signinContainer .progressBar {
+.signinContainer {
     height: 100vh;
     display: flex;
     justify-content: center;
